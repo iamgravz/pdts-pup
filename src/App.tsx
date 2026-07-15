@@ -1478,7 +1478,7 @@ export default function App() {
           </div>
         </section>
 
-        <footer className="relative lg:absolute left-0 right-0 bottom-0 z-20 px-5 pb-4 text-center text-white/90 text-xs leading-relaxed pointer-events-none bg-[#1A0A0A]/70 lg:bg-transparent">
+        <footer className="relative lg:absolute left-0 right-0 bottom-0 z-20 px-5 pb-2 text-center text-white/90 text-xs leading-relaxed pointer-events-none bg-[#1A0A0A]/70 lg:bg-transparent">
           <span className="inline-block max-w-[920px] rounded-full lg:bg-[#1A0A0A]/70 lg:border lg:border-white/20 px-3.5 py-2 backdrop-blur-sm">
             © 2026 PUPOUS Document Tracking System. All Rights Reserved. Developed for PUP Open University System.
           </span>

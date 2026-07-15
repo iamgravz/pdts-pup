@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  /* Official PUP inspired palette */
+  --color-pup-maroon-light: #9d1c1c;
+  --color-pup-maroon: #800000;
+  --color-pup-maroon-dark: #500000;
+  --color-pup-gold: #eab308;
+  --color-pup-gold-dark: #ca8a04;
+}
+
+body {
+  margin:0;
+}
+/* Custom prints styling for Process Slips */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-slip, #printable-slip * {
+    visibility: visible;
+  }
+  #printable-slip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 20px;
+    border: 2px dashed #000 !important;
+    background: white !important;
+    color: black !important;
+  }
+}
+.login-bg-1 { background-image: url('/assets/login-bg/login-1.png'); }
+.login-bg-2 { background-image: url('/assets/login-bg/login-2.png'); }
+.login-bg-3 { background-image: url('/assets/login-bg/login-3.png'); }
+.login-bg-4 { background-image: url('/assets/login-bg/login-4.png'); }
+.login-bg-5 { background-image: url('/assets/login-bg/login-5.png'); }
+.login-bg-6 { background-image: url('/assets/login-bg/login-6.png'); }
+.login-bg-7 { background-image: url('/assets/login-bg/login-7.png'); }
+.login-bg-8 { background-image: url('/assets/login-bg/login-8.png'); }
+
+/* Date picker customization for PUP theme */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  /* Approximate hue-rotate for maroon (#800000) from black/grey */
+  filter: invert(12%) sepia(91%) saturate(5538%) hue-rotate(352deg) brightness(94%) contrast(105%);
+}
