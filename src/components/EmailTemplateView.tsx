@@ -1,6 +1,7 @@
 import React from 'react';
 import { PUPSubmission } from '../types';
 import { Mail, Check, AlertCircle, Info } from 'lucide-react';
+import PUPLogo from './PUPLogo';
 
 interface EmailTemplateViewProps {
   submission: PUPSubmission;
@@ -26,7 +27,7 @@ export default function EmailTemplateView({ submission }: EmailTemplateViewProps
       <div className="bg-gray-50 p-4 border-b border-gray-200 text-xs text-gray-500 space-y-1.5 font-mono">
         <div className="flex items-center gap-2">
           <span className="w-16 font-bold text-gray-400">FROM:</span>
-          <span className="text-amber-600">PUP OUS Admission Records &lt;admission.notice@pup.edu.ph&gt;</span>
+          <span className="text-amber-600">PUP OUS Admission Records &lt;pupous_admission@pup.edu.ph&gt;</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-16 font-bold text-gray-400">TO:</span>
@@ -50,10 +51,22 @@ export default function EmailTemplateView({ submission }: EmailTemplateViewProps
       <div className="p-6 bg-gray-100 text-gray-800">
         <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-lg mx-auto border border-gray-200">
           {/* Email Branding Banner */}
-          <div className="bg-[#800000] p-4 text-center text-white">
-            <h2 className="font-display font-extrabold text-lg tracking-wider m-0">POLYTECHNIC UNIVERSITY OF THE PHILIPPINES</h2>
-            <p className="text-xs opacity-90 font-medium tracking-wide mt-1">OPEN UNIVERSITY SYSTEM • ADMISSION RECORD MONITORING</p>
-          </div>
+          <div className="bg-pup-maroon p-6 flex items-center justify-center gap-4 text-white">
+           {/* Logo Container - Dito mo i-adjust ang laki gamit ang size prop */}
+           <div className="shrink-0">
+         <PUPLogo size={48} />
+        </div>
+  
+       {/* Text Container - Nakalinya nang maayos sa tabi ng logo */}
+     <div className="text-left">
+     <h2 className="font-display font-extrabold text-sm tracking-wider m-0">
+      POLYTECHNIC UNIVERSITY OF THE PHILIPPINES
+    </h2>
+    <p className="text-[10px] opacity-90 font-medium tracking-wide mt-0.5">
+      OPEN UNIVERSITY SYSTEM • ADMISSION RECORD MONITORING
+    </p>
+  </div>
+</div>
 
           {/* Email Body Content */}
           <div className="p-5 text-sm text-gray-700 space-y-4">
@@ -63,11 +76,11 @@ export default function EmailTemplateView({ submission }: EmailTemplateViewProps
             </p>
 
             {/* Quick Process Reference Box */}
-            <div className="bg-gray-50 border-l-4 border-[#800000] p-4 rounded-r-lg space-y-1">
+            <div className="bg-gray-50 border-l-4 border-pup-maroon p-4 rounded-r-lg space-y-1">
               <span className="text-[10px] uppercase font-bold tracking-wider text-gray-400 block">Tracking Details</span>
               <p className="text-xs m-0">
                 <strong>Reference / Process Code:</strong>{' '}
-                <span className="font-mono text-sm text-[#800000] font-bold">{submission.id}</span>
+                <span className="font-mono text-sm text-pup-maroon font-bold">{submission.id}</span>
               </p>
               <p className="text-xs m-0">
                 <strong>Delivery Method:</strong> {submission.deliveryMethod}
@@ -143,7 +156,7 @@ export default function EmailTemplateView({ submission }: EmailTemplateViewProps
             <div className="text-center text-[10px] text-gray-400 space-y-1 font-medium">
               <p className="text-gray-500 uppercase font-semibold">POLYTECHNIC UNIVERSITY OF THE PHILIPPINES</p>
               <p>Anonas Street, Sta. Mesa, Manila, Philippines</p>
-              <p className="text-[#800000] font-bold mt-2 font-mono">PLEASE DO NOT REPLY TO THIS EMAIL</p>
+              <p className="text-pup-maroon font-bold mt-2 font-mono">PLEASE DO NOT REPLY TO THIS EMAIL</p>
             </div>
           </div>
         </div>

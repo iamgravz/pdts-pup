@@ -2,7 +2,7 @@
 -- PUPOUS PDTS - PostgreSQL Database Schema (pgAdmin version)
 -- Project   : PUPOUS Document Tracking System (PDTS)
 -- Version   : 1.1.0
--- Authors   : VANDAM | PUPOUS-BSITOUMN 2-3
+-- Authors   : BCGPS | PUPOUS-BSITOUMN 2-3
 -- =========================================================
 -- USAGE: Run this directly in pgAdmin Query Tool
 --        while connected to pup_ous_pdts database

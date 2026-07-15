@@ -3,7 +3,7 @@
 -- Description : Removes duplicate submissions and email logs
 --               caused by repeated save clicks or network
 --               retries. Keeps the newest record per group.
--- Authors     : VANDAM | PUPOUS-BSITOUMN 2-3
+-- Authors     : BCGPS | PUPOUS-BSITOUMN 2-3
 -- =========================================================
 -- USAGE:
 --   psql pup_ous_pdts -f maintenance/cleanup_duplicate_records.sql
