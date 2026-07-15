@@ -819,7 +819,7 @@ export default function App() {
   checkedDocs: { name: string; checked: boolean; required: boolean }[],
   missingDocs: { name: string; checked: boolean; required: boolean }[],
   formattedDate: string,
-  logoSrc: string = 'PUP_LOGO_CID'
+  logoSrc: string = 'cid:pupLogo'
 ) => {
     const escapeHtml = (value?: string) => String(value || '')
       .replace(/&/g, '&amp;')
@@ -882,84 +882,137 @@ export default function App() {
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f3f4f6; padding:24px 0;">
     <tr>
       <td align="center" style="padding:0 12px;">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:640px; background-color:#ffffff; border:1px solid #e5e7eb; border-collapse:collapse;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:576px; background-color:#ffffff; border:1px solid #e5e7eb; border-radius:8px; border-collapse:separate; overflow:hidden;">
+
+          <!-- Branding Banner (matches EmailTemplateView header) -->
           <tr>
-            <td align="center" style="background-color:#8b0000; padding:28px 28px 24px 28px; border-top:4px solid #f4c430;">
-             <img src="${logoSrc}" alt="PUP Logo" style="display:block; width:105px; height:auto; margin:0 auto 14px auto; border:0; background:#ffffff; border-radius:4px;" />
-              <h1 style="margin:0; font-size:25px; line-height:1.25; color:#ffffff; font-weight:800; letter-spacing:0.2px;">
-                Document Submission Acknowledgement
-              </h1>
-              <p style="margin:8px 0 0 0; font-size:13px; color:#f8e7e7; font-weight:600;">
-                PUPOUS Document Tracking System
-              </p>
+            <td align="center" style="background-color:#800000; padding:24px 24px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto; border-collapse:collapse;">
+                <tr>
+                  <td style="vertical-align:middle; padding-right:14px;">
+                    <img src="${logoSrc}" alt="PUP Logo" width="48" height="48" style="display:block; width:48px; height:48px; border:0; border-radius:50%; background:#ffffff;" />
+                  </td>
+                  <td style="vertical-align:middle; text-align:left;">
+                    <p style="margin:0; font-size:13px; line-height:1.35; color:#ffffff; font-weight:800; letter-spacing:0.4px;">
+                      POLYTECHNIC UNIVERSITY OF THE PHILIPPINES
+                    </p>
+                    <p style="margin:3px 0 0 0; font-size:10px; color:#ffffffe6; font-weight:600; letter-spacing:0.5px;">
+                      OPEN UNIVERSITY SYSTEM &bull; ADMISSION RECORD MONITORING
+                    </p>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
+          <!-- Body -->
           <tr>
-            <td style="padding:30px 28px 24px 28px;">
-              <p style="margin:0 0 14px 0; font-size:14px; line-height:1.7; color:#333333;">
-                Dear <strong>${safeStudentName}</strong>,
+            <td style="padding:20px 20px 18px 20px;">
+              <p style="margin:0 0 14px 0; font-size:14px; line-height:1.6; color:#111827; font-weight:600;">
+                Hello, <strong>${safeStudentName}</strong>!
               </p>
 
-              <p style="margin:0 0 16px 0; font-size:14px; line-height:1.7; color:#333333;">
-                This email acknowledges that the PUP Open University System Registrar's Office has received your submitted academic requirement(s). Please keep this acknowledgement for your reference.
+              <p style="margin:0 0 16px 0; font-size:13px; line-height:1.7; color:#374151;">
+                This is an official verification that the PUP OUS Admission Office has received your academic documents for <strong>${safePurpose}</strong>.
               </p>
 
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; margin:22px 0; border:1px solid #d9d9d9;">
+              <!-- Tracking Details (left-border accent box, like EmailTemplateView) -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin:0 0 16px 0;">
                 <tr>
-                  <td style="padding:12px 14px; width:38%; background-color:#f7eeee; border:1px solid #d9d9d9; font-weight:700; color:#7f0d0d; font-size:13px;">Reference Number</td>
-                  <td style="padding:12px 14px; border:1px solid #d9d9d9; font-size:13px; font-weight:700; color:#111827;">${safeTrackingId}</td>
+                  <td style="background-color:#f9fafb; border-left:4px solid #800000; padding:12px 14px; border-radius:0 6px 6px 0;">
+                    <span style="display:block; font-size:9px; text-transform:uppercase; font-weight:800; letter-spacing:0.6px; color:#9ca3af; margin-bottom:4px;">Tracking Details</span>
+                    <p style="margin:0 0 3px 0; font-size:12px; color:#111827;">
+                      <strong>Reference / Process Code:</strong>
+                      <span style="font-family:'Courier New', monospace; font-size:13px; color:#800000; font-weight:800;">${safeTrackingId}</span>
+                    </p>
+                    <p style="margin:0 0 3px 0; font-size:12px; color:#111827;">
+                      <strong>School Year:</strong> ${safeSchoolYear}
+                    </p>
+                    <p style="margin:0 0 3px 0; font-size:12px; color:#111827;">
+                      <strong>Delivery Method:</strong> ${safeDeliveryMethod}
+                      ${safeCourier ? `<span style="display:block; font-family:'Courier New', monospace; font-size:11px; color:#4b5563; background-color:#e5e7eb99; padding:2px 6px; border-radius:4px; width:fit-content; margin-top:3px;">Courier Ref: ${safeCourier}</span>` : ''}
+                    </p>
+                    <p style="margin:0; font-size:12px; color:#111827;">
+                      <strong>Received Date:</strong> ${safeReceivedDate}
+                    </p>
+                  </td>
                 </tr>
-                <tr>
-                  <td style="padding:12px 14px; background-color:#f7eeee; border:1px solid #d9d9d9; font-weight:700; color:#7f0d0d; font-size:13px;">Student Name</td>
-                  <td style="padding:12px 14px; border:1px solid #d9d9d9; font-size:13px; color:#111827;">${safeStudentName}</td>
-                </tr>
-                <tr>
-                  <td style="padding:12px 14px; background-color:#f7eeee; border:1px solid #d9d9d9; font-weight:700; color:#7f0d0d; font-size:13px;">School Year</td>
-                  <td style="padding:12px 14px; border:1px solid #d9d9d9; font-size:13px; color:#111827;">${safeSchoolYear}</td>
-                </tr>
-                <tr>
-                  <td style="padding:12px 14px; background-color:#f7eeee; border:1px solid #d9d9d9; font-weight:700; color:#7f0d0d; font-size:13px;">Purpose / Transaction</td>
-                  <td style="padding:12px 14px; border:1px solid #d9d9d9; font-size:13px; color:#111827;">${safePurpose}</td>
-                </tr>
-                <tr>
-                  <td style="padding:12px 14px; background-color:#f7eeee; border:1px solid #d9d9d9; font-weight:700; color:#7f0d0d; font-size:13px;">Received Date</td>
-                  <td style="padding:12px 14px; border:1px solid #d9d9d9; font-size:13px; color:#111827;">${safeReceivedDate}</td>
-                </tr>
-                <tr>
-                  <td style="padding:12px 14px; background-color:#f7eeee; border:1px solid #d9d9d9; font-weight:700; color:#7f0d0d; font-size:13px;">Delivery Method</td>
-                  <td style="padding:12px 14px; border:1px solid #d9d9d9; font-size:13px; color:#111827;">${safeDeliveryMethod}</td>
-                </tr>
-                ${courierRow}
               </table>
 
-              <div style="margin:20px 0; padding:16px; border:1px solid #d1fae5; background-color:#ecfdf5; border-radius:6px;">
-                <p style="margin:0 0 8px 0; font-size:14px; color:#065f46; font-weight:800;">Received Documents</p>
-                <ul style="margin:0; padding-left:18px; font-size:13px; line-height:1.6;">${receivedDocumentsHtml}</ul>
-              </div>
+              <!-- Received Documents -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin:0 0 14px 0;">
+                <tr>
+                  <td>
+                    <p style="margin:0 0 6px 0; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.4px; color:#1f2937; border-bottom:1px solid #f3f4f6; padding-bottom:5px;">
+                      &#10003; Received Documents:
+                    </p>
+                    <ul style="margin:0; padding-left:2px; list-style:none; font-size:12px; line-height:1.7;">
+                      ${receivedDocumentsHtml}
+                    </ul>
+                  </td>
+                </tr>
+              </table>
 
-              <div style="margin:20px 0; padding:16px; border:1px solid ${missingDocs.length > 0 ? '#fecaca' : '#d1fae5'}; background-color:${missingDocs.length > 0 ? '#fef2f2' : '#ecfdf5'}; border-radius:6px;">
-                <p style="margin:0 0 8px 0; font-size:14px; color:${missingDocs.length > 0 ? '#991b1b' : '#065f46'}; font-weight:800;">Pending / Deficient Requirements</p>
-                <ul style="margin:0; padding-left:18px; font-size:13px; line-height:1.6;">${pendingDocumentsHtml}</ul>
-              </div>
+              <!-- Missing / Pending Documents -->
+              ${missingDocs.length > 0 ? `
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin:0 0 14px 0;">
+                <tr>
+                  <td style="background-color:#fff1f2; border:1px solid #ffe4e6; border-radius:8px; padding:12px 14px;">
+                    <p style="margin:0 0 6px 0; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.4px; color:#9f1239;">
+                      &#9888; Pending Essential Requirements (Deficiencies):
+                    </p>
+                    <ul style="margin:0 0 8px 0; padding-left:2px; list-style:none; font-size:12px; line-height:1.7;">
+                      ${pendingDocumentsHtml}
+                    </ul>
+                    <p style="margin:0; font-size:11px; color:#9f1239; font-style:italic; font-weight:600;">
+                      Please submit the pending requirements as soon as possible to proceed with the processing of your application in the SIS.
+                    </p>
+                  </td>
+                </tr>
+              </table>` : ''}
 
-              ${remarksBlock}
+              <!-- Admin Remarks -->
+              ${safeRemarks ? `
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin:0 0 14px 0;">
+                <tr>
+                  <td style="background-color:#fffbeb; border:1px solid #fef3c7; border-radius:8px; padding:12px 14px;">
+                    <span style="display:block; font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; color:#92400e; margin-bottom:4px;">Office Remarks / Instructions:</span>
+                    <p style="margin:0; font-size:12px; color:#78350f; font-style:italic; line-height:1.6;">&ldquo;${safeRemarks}&rdquo;</p>
+                  </td>
+                </tr>
+              </table>` : ''}
 
-              <p style="margin:24px 0 0 0; font-size:14px; line-height:1.7; color:#333333;">
-                Thank you.<br />
-                <strong>PUPOUS Registrar's Office</strong><br />
-                Polytechnic University of the Philippines - Open University System
-              </p>
+              <!-- Guidance -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin:0 0 4px 0;">
+                <tr>
+                  <td style="background-color:#f8fafc; border:1px solid #f1f5f9; border-radius:8px; padding:12px 14px;">
+                    <span style="display:block; font-size:11px; font-weight:800; color:#334155; margin-bottom:5px;">Guidelines and Next Steps:</span>
+                    <p style="margin:0 0 5px 0; font-size:11.5px; color:#475569; line-height:1.6;">1. Your documents are now scheduled for physical folder verification.</p>
+                    <p style="margin:0; font-size:11.5px; color:#475569; line-height:1.6;">2. The OUS Admin will now input your submission status into the <strong>PUP Student Information System (SIS)</strong>. Please monitor your official portal evaluation.</p>
+                  </td>
+                </tr>
+                
+              </table>
+
+              
             </td>
           </tr>
 
+          <!-- Footer (matches EmailTemplateView footer) -->
           <tr>
-            <td style="padding:16px 24px; background-color:#fafafa; border-top:1px solid #e5e7eb; text-align:center;">
-              <p style="margin:0; font-size:11px; line-height:1.6; color:#6b7280;">
-                This is an automated acknowledgement from the PUPOUS Document Tracking System. Please coordinate with the Registrar's Office for official corrections, concerns, or follow-up actions.
+            <td style="padding:16px 20px; border-top:1px solid #f3f4f6; text-align:center;">
+              <p style="margin:0; font-size:10px; font-weight:700; text-transform:uppercase; color:#6b7280; letter-spacing:0.3px;">
+                Polytechnic University of the Philippines
+              </p>
+              <p style="margin:2px 0 0 0; font-size:10px; color:#9ca3af;">
+                Anonas Street, Sta. Mesa, Manila, Philippines
+              </p>
+              <p style="margin:8px 0 0 0; font-size:10px; font-weight:800; color:#800000; font-family:'Courier New', monospace; letter-spacing:0.3px;">
+                PLEASE DO NOT REPLY TO THIS EMAIL
               </p>
             </td>
           </tr>
+
         </table>
       </td>
     </tr>
@@ -1031,7 +1084,7 @@ export default function App() {
       day: 'numeric'
     });
 
-    const compiled = compileEmailTemplate(newSubmission, checkedDocs, missingDocs, formattedDate);
+    const compiled = compileEmailTemplate(newSubmission, checkedDocs, missingDocs, formattedDate, 'cid:pupLogo');
     const emailSubject = compiled.subject;
     const emailBody = compiled.body;
 
@@ -1268,10 +1321,10 @@ export default function App() {
     return (
       <main
         id="login-page"
-        className={`min-h-screen selection:bg-[#800000] selection:text-white relative overflow-hidden font-sans bg-cover bg-center bg-no-repeat login-bg-${loginBackgroundIndex}`}
+        className={`min-h-screen selection:pup-maroon selection:text-white relative overflow-hidden font-sans bg-cover bg-center bg-no-repeat login-bg-${loginBackgroundIndex}`}
       >
         {/* Dynamic PUP landing background overlay */}
-<div className="absolute inset-0 bg-gradient-to-r from-[#8B0000]/45 via-[#610000]/30 to-[#1A0A0A]/40 z-0" />
+<div className="absolute inset-0 bg-linear-to-r from-[#8B0000]/45 via-[#610000]/30 to-[#1A0A0A]/40 z-0" />
 <div className="absolute inset-0 bg-black/10 z-0" />
    
 
@@ -1297,7 +1350,7 @@ export default function App() {
   &quot;Mula sa&apos;yo, para sa bayan&quot;
 </p>
 
-              <div className="mt-8 w-full max-w-[400px] rounded-2xl bg-[#2f272c]/75 border border-white/20 px-6 py-4 backdrop-blur-md text-center shadow-[0_12px_30px_rgba(0,0,0,0.18)]">
+              <div className="mt-8 w-full max-w-400px rounded-2xl bg-[#2f272c]/75 border border-white/20 px-6 py-4 backdrop-blur-md text-center shadow-[0_12px_30px_rgba(0,0,0,0.18)]">
                 <span className="text-[#FCD34D] font-extrabold text-xs tracking-[0.16em] uppercase block mb-1.5">
                   PDTS
                 </span>
@@ -1309,7 +1362,7 @@ export default function App() {
           </div>
 
           {/* Right Column: Login card based on the requested reference */}
-          <div className="flex items-center justify-center px-5 sm:px-8 lg:pl-6 lg:pr-[64px] py-7 lg:py-9 lg:min-h-screen lg:overflow-y-auto">
+          <div className="flex items-center justify-center px-5 sm:px-8 lg:pl-6 lg:pr-16 py-7 lg:py-9 lg:min-h-screen lg:overflow-y-auto">
             <motion.div
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
