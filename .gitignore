@@ -1,0 +1,19 @@
+ 
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+android/
+ios/
+*.apk
+*.aab
+
+# Environment variables
+.env
+.env.mobile.example
+.env.windows.example
+
+# Logs and databases
+*.log
+*.sqlite
